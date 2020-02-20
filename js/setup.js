@@ -7,6 +7,8 @@ var WIZARD = {
   EYES_COLORS: ['black', 'red', 'blue', 'yellow', 'green']
 };
 
+var WIZARDS_COUNT = 4;
+
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
@@ -24,11 +26,13 @@ var generateWizards = function (wizardsData, wizardsCount) {
   var wizards = [];
 
   for (var i = 0; i < wizardsCount; i++) {
-    wizards[i] = {
+    var wizard = {
       name: getRandomElement(wizardsData.FIRST_NAMES) + ' ' + getRandomElement(wizardsData.LAST_NAMES),
       coatColor: getRandomElement(wizardsData.COAT_COLORS),
       eyesColor: getRandomElement(wizardsData.EYES_COLORS)
     };
+
+    wizards.push(wizard);
   }
 
   return wizards;
@@ -44,7 +48,7 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-var wizards = generateWizards(WIZARD, 4);
+var wizards = generateWizards(WIZARD, WIZARDS_COUNT);
 var fragment = document.createDocumentFragment();
 for (var i = 0; i < wizards.length; i++) {
   fragment.appendChild(renderWizard(wizards[i]));
